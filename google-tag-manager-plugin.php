@@ -3,14 +3,20 @@
 Plugin Name: Google Tag Manager Plugin
 Plugin URI:
 Description: Add all Google Tag Manager scripts in Wordpress websites.
-Version: 1.2
+Version: 1.3
 Author: Jeremy Spaeth
 Author URI:
 License: GPL v3
 */
 
+/**
+ * Class GoogleTagManager
+ */
 class GoogleTagManager
 {
+    /**
+     * GoogleTagManager constructor.
+     */
 	public function __construct()
 	{
 		add_filter('wp_head', array($this, 'getDataLayer'), 50, 0);
@@ -18,7 +24,7 @@ class GoogleTagManager
 		add_filter('wp_footer', array($this, 'GtmBody'));
 	}
 
-	function getDataLayer()
+	public function getDataLayer()
 	{
 		// Get current user informations if is logged in.
 		$user = wp_get_current_user();
@@ -51,6 +57,7 @@ class GoogleTagManager
 </script>
             ';
 	}
+
 
 	function GtmHead()
 	{
